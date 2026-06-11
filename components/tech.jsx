@@ -2,33 +2,13 @@
 import React from 'react';
 import { IconTarget, IconBuilding2, IconWatch, IconBellRing } from './icons';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useInView } from '../hooks/useInView';
+import { Reveal } from './ui/Reveal';
 
 // Easycheck — Section 5 "Tech / Differentiation"
 // Header → Stats strip → 2×2 cards
 
 const { useEffect, useRef, useState } = React;
-
-// ─── useInView hook (IntersectionObserver, re-triggers on every entry) ───
-function useInView(options = { threshold: 0.15, rootMargin: '0px 0px -80px 0px' }) {
-  const ref = useRef(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    // Reduce motion: skip observer, show immediately.
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInView(true);
-      return;
-    }
-    const io = new IntersectionObserver(([entry]) => {
-      // Toggle on every entry/exit so the animation replays on re-scroll.
-      setInView(entry.isIntersecting);
-    }, options);
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return [ref, inView];
-}
 
 // 카운팅 애니메이션 훅
 function useCountUp(end, duration = 1000, inView) {
@@ -63,22 +43,6 @@ function useCountUp(end, duration = 1000, inView) {
   }, [end, duration, inView]);
 
   return count;
-}
-
-// Reveal wrapper
-function Reveal({ as: Tag = 'div', delay = 0, y = 24, duration = 600, className = '', children, ...rest }) {
-  const [ref, inView] = useInView();
-  const style = {
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0)' : `translateY(${y}px)`,
-    transition: `opacity ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
-    willChange: 'opacity, transform',
-  };
-  return (
-    <Tag ref={ref} className={className} style={style} {...rest}>
-      {children}
-    </Tag>
-  );
 }
 
 function StatItem({ value, label, caption, inView }) {

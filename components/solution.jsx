@@ -2,44 +2,8 @@
 import React from 'react';
 import { IconWatch, IconChevronRight, IconBellRing } from './icons';
 import { useLanguage } from '../contexts/LanguageContext';
+import { Reveal } from './ui/Reveal';
 
-const { useEffect, useRef, useState } = React;
-
-// useInView hook
-function useInView(options = { threshold: 0.15, rootMargin: '0px 0px -80px 0px' }) {
-  const ref = useRef(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInView(true);
-      return;
-    }
-    const io = new IntersectionObserver(([entry]) => {
-      setInView(entry.isIntersecting);
-    }, options);
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return [ref, inView];
-}
-
-// Reveal wrapper
-function Reveal({ as: Tag = 'div', delay = 0, y = 24, duration = 600, className = '', children, ...rest }) {
-  const [ref, inView] = useInView();
-  const style = {
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0)' : `translateY(${y}px)`,
-    transition: `opacity ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
-    willChange: 'opacity, transform',
-  };
-  return (
-    <Tag ref={ref} className={className} style={style} {...rest}>
-      {children}
-    </Tag>
-  );
-}
 // Easycheck — Section 3 "Solution"
 // 3 STEP cards w/ connectors + highlight box
 
