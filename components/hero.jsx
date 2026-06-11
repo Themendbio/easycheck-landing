@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { IconMenu, IconPlay, IconCheck } from './icons';
+import { useLanguage } from '../contexts/LanguageContext';
 
 // Easycheck — Nav + Hero section
 // React component using design-system tokens (Tailwind extended in index <script>).
@@ -10,6 +11,7 @@ const { useState } = React;
 /* ─────────────── NAV ─────────────── */
 function Nav() {
     const [open, setOpen] = useState(false);
+    const { locale, setLocale, t } = useLanguage();
 
     return (
         <header className="sticky top-0 z-30 nav-blur border-b border-border">
@@ -24,13 +26,39 @@ function Nav() {
                 </a>
 
                 {/* Desktop links */}
-                <nav className="hidden lg:flex items-center gap-8" aria-label="주요 메뉴">
+                <nav className="hidden lg:flex items-center gap-4" aria-label="주요 메뉴">
+                    {/* Language Switcher */}
+                    <div className="flex items-center gap-1 bg-bg-subtle rounded-lg p-1">
+                        <button
+                            onClick={() => setLocale('ko')}
+                            className={`px-3 py-1.5 rounded-md text-[13px] font-medium transition-all duration-200 focus-ring ${
+                                locale === 'ko'
+                                    ? 'bg-white text-text-primary shadow-sm'
+                                    : 'text-text-tertiary hover:text-text-secondary'
+                            }`}
+                            aria-label="한국어"
+                        >
+                            한국어
+                        </button>
+                        <button
+                            onClick={() => setLocale('en')}
+                            className={`px-3 py-1.5 rounded-md text-[13px] font-medium transition-all duration-200 focus-ring ${
+                                locale === 'en'
+                                    ? 'bg-white text-text-primary shadow-sm'
+                                    : 'text-text-tertiary hover:text-text-secondary'
+                            }`}
+                            aria-label="English"
+                        >
+                            English
+                        </button>
+                    </div>
+
                     <a
                         href="#"
                         className="inline-flex items-center gap-2 bg-brand-accent text-white font-semibold text-[14px] px-4 py-2.5 rounded-lg shadow-sm hover:bg-brand-accent-hover hover:-translate-y-px hover:shadow-md transition-all duration-200 focus-ring"
-                        aria-label="다운로드"
+                        aria-label={t('nav.download')}
                     >
-                        다운로드
+                        {t('nav.download')}
                     </a>
                 </nav>
 
@@ -38,7 +66,7 @@ function Nav() {
                 <button
                     type="button"
                     className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md text-text-primary hover:bg-bg-subtle focus-ring"
-                    aria-label="메뉴 열기"
+                    aria-label={t('nav.menuOpen')}
                     aria-expanded={open}
                     onClick={() => setOpen((v) => !v)}
                 >
@@ -51,12 +79,14 @@ function Nav() {
 
 /* ─────────────── HERO ─────────────── */
 function Hero() {
+    const { t } = useLanguage();
+
     const certifications = [
-        '식약처 웰니스 기기 인증',
-        '신촌세브란스 협업',
-        'UNIST 폭염연구센터 협업',
-        '연구 데이터 36,000건+',
-        'SCI 논문 게재',
+        t('hero.certifications.cert1'),
+        t('hero.certifications.cert2'),
+        t('hero.certifications.cert3'),
+        t('hero.certifications.cert4'),
+        t('hero.certifications.cert5'),
     ];
 
     const stagger = (i) => ({ animationDelay: `${i * 80}ms` });
@@ -103,8 +133,8 @@ function Hero() {
               "
                             style={{ ...stagger(1), wordBreak: 'keep-all' }}
                         >
-                            <span className="block text-brand-accent">몸이 보내는 SOS,</span>
-                            <span className="block">놓치고 계셨나요?</span>
+                            <span className="block text-brand-accent">{t('hero.headline1')}</span>
+                            <span className="block">{t('hero.headline2')}</span>
                         </h1>
 
                         {/* 설명 */}
@@ -116,7 +146,7 @@ function Hero() {
                                 textShadow: '0 1px 12px rgba(0,16,40,0.4)',
                             }}
                         >
-                            수분 부족은 조용히, 그리고 빠르게 진행됩니다.
+                            {t('hero.description')}
                         </p>
 
                         {/* CTA 버튼 영역 */}
@@ -125,7 +155,7 @@ function Hero() {
                                 {/* 주 버튼 — Google Play */}
                                 <a
                                     href="#"
-                                    aria-label="Google Play에서 EASYCHECK 다운로드"
+                                    aria-label={t('hero.downloadButton')}
                                     className="
                     inline-flex items-center justify-center gap-2.5
                     w-full max-w-[360px] lg:w-auto lg:max-w-none
@@ -140,7 +170,7 @@ function Hero() {
                                         className="text-brand-primary"
                                         aria-hidden="true"
                                     />
-                                    Google Play에서 다운로드
+                                    {t('hero.downloadButton')}
                                 </a>
                             </div>
 
@@ -149,7 +179,7 @@ function Hero() {
                                 className="mt-4 text-[13px] leading-snug"
                                 style={{ color: 'rgba(255,255,255,0.7)' }}
                             >
-                                무료 다운로드 · 스마트워치 필요
+                                {t('hero.caption')}
                             </p>
                         </div>
                     </div>
