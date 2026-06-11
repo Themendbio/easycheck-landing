@@ -1,3 +1,6 @@
+'use client';
+import React from 'react';
+
 // Inline lucide-react equivalents — small, semantic SVGs.
 // stroke="currentColor", width/height via props for size.
 
@@ -135,10 +138,5 @@ const IconBuilding2 = (props) => (
   </Icon>
 );
 
-Object.assign(window, {
-  Icon, IconPlay, IconCheck, IconMenu, IconWatch,
-  IconHardHat, IconHeart, IconSun, IconUsers,
-  IconChevronRight, IconBellRing,
-  IconTarget, IconBuilding2,
-  IconInfo,
-});
+
+export { Icon, IconPlay, IconCheck, IconMenu, IconWatch, IconHardHat, IconHeart, IconSun, IconUsers, IconChevronRight, IconBellRing, IconTarget, IconBuilding2, IconInfo };

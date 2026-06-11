@@ -1,3 +1,7 @@
+'use client';
+import React from 'react';
+import { IconTarget, IconBuilding2, IconWatch, IconBellRing } from './icons';
+
 // Easycheck — Section 5 "Tech / Differentiation"
 // Header → Stats strip → 2×2 cards
 
@@ -58,6 +62,22 @@ function useCountUp(end, duration = 1000, inView) {
   }, [end, duration, inView]);
 
   return count;
+}
+
+// Reveal wrapper
+function Reveal({ as: Tag = 'div', delay = 0, y = 24, duration = 600, className = '', children, ...rest }) {
+  const [ref, inView] = useInView();
+  const style = {
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateY(0)' : `translateY(${y}px)`,
+    transition: `opacity ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+    willChange: 'opacity, transform',
+  };
+  return (
+    <Tag ref={ref} className={className} style={style} {...rest}>
+      {children}
+    </Tag>
+  );
 }
 
 function StatItem({ value, label, caption, inView }) {
@@ -259,4 +279,5 @@ function TechSection() {
 
 }
 
-Object.assign(window, { TechSection, TechCard, StatItem });
+
+export { TechSection };

@@ -1,3 +1,7 @@
+'use client';
+import React from 'react';
+import { IconInfo } from './icons';
+
 // Easycheck — Footer (섹션 7) · 단일 페이지용 단순 버전
 // React. Tailwind (extended via index <script>). lucide-equivalent icons (icons.jsx). 정적, 모션 없음.
 
@@ -60,7 +64,7 @@ function Footer() {
                 {/* 2. 브랜드 + 모회사 (좌측 정렬, 단순) */}
                 <div className="flex flex-col gap-3 items-start">
                     <img
-                        src={window.__resources?.logo || "images/easycheck-logo.webp"}
+                        src="/images/easycheck-logo.webp"
                         alt="EASYCHECK"
                         className="h-8 lg:h-9 w-auto select-none"
                     />
@@ -101,7 +105,5 @@ function Footer() {
     );
 }
 
-Object.assign(window, {
-    Footer,
-    FooterDisclaimer,
-});
+
+export { Footer };

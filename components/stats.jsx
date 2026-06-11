@@ -1,3 +1,6 @@
+'use client';
+import React from 'react';
+
 /* 2. 통계 — 연도별 여름 평균기온 (클린 레이아웃 스타일) */
 
 const { useEffect, useRef, useState } = React;
@@ -354,3 +357,5 @@ function StatsSection() {
         </section>
     );
 }
+
+export { StatsSection };

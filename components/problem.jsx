@@ -1,3 +1,7 @@
+'use client';
+import React from 'react';
+import { IconChevronRight, IconHardHat, IconSun, IconUsers, IconHeart, IconBuilding2 } from './icons';
+
 // Easycheck — Section 2 "Problem / Personas"
 // React component using design-system tokens.
 // Entry animations: IntersectionObserver-driven, fade + slide-up.
@@ -373,7 +377,7 @@ function ProblemSection() {
     {
       ImageIcon: IconHardHat,
       LabelIcon: IconSun,
-      image: (typeof window !== 'undefined' && window.__resources?.personaOutdoor) || 'images/persona-outdoor.webp',
+      image: "/images/persona-outdoor.webp",
       imageCaption: '야외 작업자 이미지',
       label: '야외 작업자',
       title: '땀으로 빠진 수분, 느끼기 전에 이미 한계입니다',
@@ -383,7 +387,7 @@ function ProblemSection() {
     {
       ImageIcon: IconHeart,
       LabelIcon: IconUsers,
-      image: (typeof window !== 'undefined' && window.__resources?.personaElderly) || 'images/persona-elderly.webp',
+      image: "/images/persona-elderly.webp",
       imageCaption: '어르신 케어 이미지',
       label: '어르신 · 보호자',
       title: '괜찮다고 하셨는데, 몸은 괜찮지 않을 수 있습니다',
@@ -393,7 +397,7 @@ function ProblemSection() {
     {
       ImageIcon: IconBuilding2,
       LabelIcon: IconBuilding2,
-      image: (typeof window !== 'undefined' && window.__resources?.personaOffice) || 'images/persona-office.webp',
+      image: "/images/persona-office.webp",
       imageCaption: '직장인 · 사무직 이미지',
       label: '직장인 · 사무직',
       title: '하루 종일 집중이 안 된다면, 탈수부터 의심하세요',
@@ -413,4 +417,5 @@ function ProblemSection() {
   );
 }
 
-Object.assign(window, { ProblemSection, PersonaCard, PersonaSwipe, PersonaCarousel, PersonaCardLg, Reveal, useInView });
+
+export { ProblemSection };

@@ -1,3 +1,7 @@
+'use client';
+import React from 'react';
+import { IconMenu, IconPlay, IconCheck } from './icons';
+
 // Easycheck — Nav + Hero section
 // React component using design-system tokens (Tailwind extended in index <script>).
 // NOTE: 이 Hero는 이전 cta.jsx 의 CtaSection 을 이전한 것으로, 실제로 사용되는 Hero 입니다.
@@ -14,7 +18,7 @@ function Nav() {
                 {/* Wordmark */}
                 <a href="#" className="focus-ring rounded-md" aria-label="Easycheck 홈으로">
                     <img
-                        src={window.__resources?.logo || 'images/easycheck-logo.webp'}
+                        src="/images/easycheck-logo.webp"
                         alt="EASYCHECK"
                         className="h-6 lg:h-7 w-auto select-none"
                     />
@@ -77,8 +81,7 @@ function Hero() {
                 >
                     <source
                         src={
-                            (typeof window !== 'undefined' && window.__resources?.heroVideo) ||
-                            'video/hero-video.mp4'
+                            "/video/hero-video.mp4"
                         }
                         type="video/mp4"
                     />
@@ -193,4 +196,5 @@ function Hero() {
     );
 }
 
-Object.assign(window, { Nav, Hero });
+
+export { Nav, Hero };
