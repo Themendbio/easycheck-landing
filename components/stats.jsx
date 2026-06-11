@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 /* 2. 통계 — 연도별 여름 평균기온 (클린 레이아웃 스타일) */
 
@@ -44,6 +45,7 @@ function Reveal({ as: Tag = 'div', delay = 0, y = 24, duration = 600, className 
 }
 
 function StatsSection() {
+    const { t } = useLanguage();
     const [chartRef, chartInView] = useInView();
     const [isMobile, setIsMobile] = useState(false);
 
@@ -105,13 +107,12 @@ function StatsSection() {
                 <div className="text-center mb-8 md:mb-10">
                     {/* 제목 */}
                     <Reveal as="h2" delay={0} className="text-[34px] md:text-[40px] lg:text-[52px] font-bold leading-tight text-text-primary mb-4" style={{ letterSpacing: '-0.02em' }}>
-                        올여름, 역대급 폭염이 예고됩니다
+                        {t('stats.title')}
                     </Reveal>
 
                     {/* 설명 */}
                     <Reveal as="p" delay={100} className="text-[15px] lg:text-[17px] leading-[1.6] text-text-secondary max-w-2xl mx-auto">
-                        2019년부터 2026년까지 여름 평균기온 추이를 분석한 결과,<br className="hidden md:block" />
-                        올해가 가장 뜨거운 여름으로 기록될 전망입니다.
+                        {t('stats.description')}
                     </Reveal>
                 </div>
                 <svg
@@ -172,7 +173,7 @@ function StatsSection() {
                                         animationDelay: '1s',
                                     }}
                                 >
-                                    26.4°C
+                                    {t('stats.chart.temp')}
                                 </div>
 
                                 {/* 메인 헤드라인 */}
@@ -189,7 +190,7 @@ function StatsSection() {
                                         animationDelay: '1.05s',
                                     }}
                                 >
-                                    8년 새 가장 뜨거운 여름
+                                    {t('stats.chart.headline')}
                                 </h3>
 
                                 {/* 온도 정보 */}
@@ -205,9 +206,9 @@ function StatsSection() {
                                         animationDelay: '1.1s',
                                     }}
                                 >
-                                    평년 대비{' '}
+                                    {t('stats.chart.comparison')}{' '}
                                     <strong style={{ color: '#F39800', fontWeight: 700 }}>
-                                        +2.3°C
+                                        {t('stats.chart.comparisonValue')}
                                     </strong>
                                 </p>
 
@@ -223,7 +224,7 @@ function StatsSection() {
                                         animationDelay: '1.15s',
                                     }}
                                 >
-                                    수분 관리가 필요한 시점
+                                    {t('stats.chart.message')}
                                 </div>
                             </div>
                         </foreignObject>
@@ -331,25 +332,25 @@ function StatsSection() {
                     <Reveal delay={200} className="mt-12 text-center px-4">
                         {/* 큰 온도 숫자 */}
                         <div className="text-[56px] font-bold text-brand-accent mb-4" style={{ letterSpacing: '-0.03em' }}>
-                            26.4°C
+                            {t('stats.chart.temp')}
                         </div>
 
                         {/* 메인 헤드라인 */}
                         <h3 className="text-[24px] md:text-[28px] font-bold text-text-primary mb-3" style={{ letterSpacing: '-0.02em' }}>
-                            8년 새 가장 뜨거운 여름
+                            {t('stats.chart.headline')}
                         </h3>
 
                         {/* 온도 정보 */}
                         <p className="text-[15px] text-text-secondary mb-4" style={{ letterSpacing: '-0.01em' }}>
-                            평년 대비{' '}
+                            {t('stats.chart.comparison')}{' '}
                             <strong className="text-brand-accent font-bold">
-                                +2.3°C
+                                {t('stats.chart.comparisonValue')}
                             </strong>
                         </p>
 
                         {/* 추가 메시지 */}
                         <div className="text-[14px] font-semibold text-text-tertiary">
-                            수분 관리가 필요한 시점
+                            {t('stats.chart.message')}
                         </div>
                     </Reveal>
                 )}

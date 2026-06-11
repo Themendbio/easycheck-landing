@@ -1,0 +1,143 @@
+{
+    "nav": {
+        "download": "Download",
+        "menuOpen": "Open menu"
+    },
+    "hero": {
+        "headline1": "What you don't feel",
+        "headline2": "can still hurt you.",
+        "description": "By the time you feel thirsty, dehydration has already begun. EASYCHECK reads your hydration in real time — straight from your wrist.",
+        "downloadButton": "Get it on Google Play",
+        "caption": "Free download · Smartwatch required",
+        "certifications": {
+            "cert1": "Developed with Severance Hospital, Seoul",
+            "cert2": "Published in SCI-indexed journals",
+            "cert3": "36,000+ clinical PPG records",
+            "cert4": "Certified wellness device",
+            "cert5": "UNIST Heat Wave Research Center partner"
+        }
+    },
+    "stats": {
+        "title": "The hottest summer on record is coming.",
+        "description": "Record heat is becoming the new normal worldwide. This summer is projected to be the hottest yet — and your body will feel it before you do.",
+        "chart": {
+            "ariaLabel": "Summer average temperature trend from 2019 to 2026 — 2026 is the highest at 26.4°C",
+            "temp": "26.4°C",
+            "headline": "Hottest summer in 8 years",
+            "comparison": "Above average",
+            "comparisonValue": "+2.3°C",
+            "message": "Time to manage hydration"
+        }
+    },
+    "problem": {
+        "title": "Dehydration doesn't treat everyone equally.",
+        "description": "Anyone can get dehydrated. For some, it happens faster — and quieter.",
+        "personas": {
+            "outdoor": {
+                "label": "Outdoor Workers",
+                "title": "We sweat the small stuff. So you don't have to.",
+                "body": "Construction crews, delivery riders, farm workers — when you sweat for a living, fluid loss outpaces what you feel.",
+                "quote": "“I thought I could push through. It was dehydration.”"
+            },
+            "elderly": {
+                "label": "Seniors & Caregivers",
+                "title": "“I'm fine” is not a measurement.",
+                "body": "With age, the sense of thirst fades. Many seniors are dehydrated without ever feeling it — and without anyone knowing.",
+                "quote": "“She always said she was fine. Now I can actually check.”"
+            },
+            "office": {
+                "label": "Office Workers",
+                "title": "That's not fatigue. That's thirst.",
+                "body": "Sitting all day, running on coffee — chronic mild dehydration looks a lot like burnout. The dry throat, the afternoon fog: your body asking for water.",
+                "quote": "“I was tired, so I drank more coffee. Turns out I needed water.”"
+            }
+        },
+        "controls": {
+            "prev": "Previous",
+            "next": "Next"
+        }
+    },
+    "solution": {
+        "title": "One watch. Your hydration, in real time.",
+        "description": "EASYCHECK analyzes PPG signals from your smartwatch using AI to instantly check your body's hydration index.",
+        "steps": {
+            "step1": {
+                "label": "STEP 1",
+                "title": "Wear it",
+                "body": "Put on your smartwatch and PPG measurement starts automatically. No needles. No blood. Nothing extra."
+            },
+            "step2": {
+                "label": "STEP 2",
+                "title": "AI reads between the beats",
+                "body": "Our physics-based deep learning model converts your PPG waveform into a spectrogram and computes your hydration index."
+            },
+            "step3": {
+                "label": "STEP 3",
+                "title": "Know before thirst",
+                "body": "When your index hits the threshold, you get an instant alert — with trends and intake guidance in the app."
+            }
+        },
+        "highlight": {
+            "badge": "Smart Alert System",
+            "title": "You can lead yourself to water. We'll tell you when.",
+            "description": "While other wearables record what already happened, EASYCHECK alerts you before dehydration sets in."
+        }
+    },
+    "tech": {
+        "title": "Why EASYCHECK is different",
+        "description": "Other wearables count your steps. EASYCHECK reads what's inside.",
+        "stats": {
+            "accuracy": {
+                "value": "89.5%",
+                "label": "Hydration index accuracy",
+                "caption": "research-validated"
+            },
+            "data": {
+                "value": "36,000+",
+                "label": "Multi-center clinical PPG records",
+                "caption": "accumulated data"
+            },
+            "severance": {
+                "value": "195",
+                "label": "Severance Hospital study participants",
+                "caption": "clinical research"
+            },
+            "participants": {
+                "value": "600+",
+                "label": "Total research participants",
+                "caption": "cumulative subjects"
+            }
+        },
+        "cards": {
+            "ai": {
+                "pill": "Accuracy 0.895",
+                "title": "PPG-to-spectrogram AI",
+                "body": "A multi-model deep learning ensemble using time-frequency transforms (STFT/CWT) — not simple waveform analysis."
+            },
+            "severance": {
+                "pill": "Hospital Research",
+                "title": "Built on hospital research",
+                "body": "Developed and validated with the Department of Emergency Medicine at Severance Hospital, Seoul."
+            },
+            "watch": {
+                "pill": "Smartwatch-only",
+                "title": "Optimized for smartwatches",
+                "body": "A signal pipeline tuned for wrist-worn PPG sensors. Accurate readings during everyday wear."
+            },
+            "alert": {
+                "pill": "Proactive Alert",
+                "title": "Alerts that come first",
+                "body": "An alert-driven algorithm that notifies you the moment your index crosses the threshold — before thirst does."
+            }
+        }
+    },
+    "footer": {
+        "disclaimer": {
+            "title": "Disclaimer",
+            "text": "EASYCHECK is a wellness device, not a medical device. The hydration index is provided for general wellness reference only and is not intended to diagnose, treat, cure, or prevent any disease."
+        },
+        "company": "The M.E.N.D. BioSimulator",
+        "copyright": "© 2026 EASYCHECK. The M.E.N.D. BioSimulator Co., Ltd. All rights reserved.",
+        "businessInfo": "Business Registration: 170-87-02647 · CEO: Junsang Lee · Address: 404, 29 Sinchon-yeok-ro, Seoul, South Korea"
+    }
+}

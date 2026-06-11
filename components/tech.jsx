@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { IconTarget, IconBuilding2, IconWatch, IconBellRing } from './icons';
+import { useLanguage } from '../contexts/LanguageContext';
 
 // Easycheck — Section 5 "Tech / Differentiation"
 // Header → Stats strip → 2×2 cards
@@ -176,40 +177,41 @@ function TechCard({ card, delay }) {
 }
 
 function TechSection() {
+  const { t } = useLanguage();
   const [statsRef, statsInView] = useInView({ threshold: 0.3, rootMargin: '0px 0px -100px 0px' });
 
   const stats = [
-  { value: '89.5%', label: '수분 지수 정확도', caption: '연구 검증 수치' },
-  { value: '3.6만+건', label: '다기관 연구 PPG 데이터', caption: '축적 데이터' },
-  { value: '195명', label: '세브란스 협업 연구', caption: '임상 연구 참여' },
-  { value: '600+명', label: '총 연구 참여자', caption: '누적 피험자' }];
+  { value: t('tech.stats.accuracy.value'), label: t('tech.stats.accuracy.label'), caption: t('tech.stats.accuracy.caption') },
+  { value: t('tech.stats.data.value'), label: t('tech.stats.data.label'), caption: t('tech.stats.data.caption') },
+  { value: t('tech.stats.severance.value'), label: t('tech.stats.severance.label'), caption: t('tech.stats.severance.caption') },
+  { value: t('tech.stats.participants.value'), label: t('tech.stats.participants.label'), caption: t('tech.stats.participants.caption') }];
 
 
   const cards = [
   {
     isHighlight: true,
-    pill: '정확도 0.895',
+    pill: t('tech.cards.ai.pill'),
     Icon: IconTarget,
-    title: 'PPG → 스펙트로그램 변환 AI',
-    body: '단순 파형 분석이 아닌 시간-주파수 변환(STFT/CWT)을 통해 수분 상태를 확인하는 멀티모델 딥러닝 앙상블 기술'
+    title: t('tech.cards.ai.title'),
+    body: t('tech.cards.ai.body')
   },
   {
-    pill: '세브란스 협업',
+    pill: t('tech.cards.severance.pill'),
     Icon: IconBuilding2,
-    title: '세브란스 병원 연구 기반 개발',
-    body: '신촌세브란스 응급의학과와의 협업으로 195명의 연구 데이터를 기반으로 알고리즘을 개발 및 검증'
+    title: t('tech.cards.severance.title'),
+    body: t('tech.cards.severance.body')
   },
   {
-    pill: '스마트워치 전용',
+    pill: t('tech.cards.watch.pill'),
     Icon: IconWatch,
-    title: '스마트워치 전용 최적화',
-    body: '스마트워치 PPG 센서에 최적화된 신호처리 파이프라인으로 일상 착용 중에도 정확한 측정 가능'
+    title: t('tech.cards.watch.title'),
+    body: t('tech.cards.watch.body')
   },
   {
-    pill: '선제적 알림',
+    pill: t('tech.cards.alert.pill'),
     Icon: IconBellRing,
-    title: '선제적 알림 시스템',
-    body: '갈증이 느껴지기 이전, 수분 지수가 기준치에 도달하는 즉시 알림을 보내는 알림 중심 알고리즘'
+    title: t('tech.cards.alert.title'),
+    body: t('tech.cards.alert.body')
   }];
 
 
@@ -228,14 +230,14 @@ function TechSection() {
             className="text-[34px] md:text-[40px] lg:text-[52px] font-bold leading-[1.15] tracking-[-0.025em] text-text-primary mb-6"
             style={{ wordBreak: 'keep-all' }}>
 
-            다른 어플은 기록합니다<br />EASYCHECK는 예방합니다
+            {t('tech.title')}
           </h2>
 
           <p
             className="text-[17px] lg:text-[19px] leading-[1.6] text-text-secondary max-w-[40em] mb-16 lg:mb-20"
             style={{ wordBreak: 'keep-all' }}>
-            
-            갈증은 탈수의 마지막 신호입니다. EASYCHECK는 그 전에 먼저 움직입니다.
+
+            {t('tech.description')}
           </p>
         </Reveal>
 

@@ -8,6 +8,7 @@ import {
     IconHeart,
     IconBuilding2,
 } from './icons';
+import { useLanguage } from '../contexts/LanguageContext';
 
 // Easycheck — Section 2 "Problem / Personas"
 // React component using design-system tokens.
@@ -130,6 +131,7 @@ function PersonaCard({ persona }) {
 
 /* ─── 모바일/태블릿(<lg): 가로 스와이프 캐러셀 ─── */
 function PersonaSwipe({ personas }) {
+    const { t } = useLanguage();
     const trackRef = useRef(null);
 
     return (
@@ -145,16 +147,13 @@ function PersonaSwipe({ personas }) {
                         className="text-[34px] md:text-[40px] lg:text-[52px] font-bold leading-[1.15] tracking-[-0.025em] text-text-primary mb-6"
                         style={{ wordBreak: 'keep-all' }}
                     >
-                        이런 분들께 수분 관리가
-                        <br />
-                        더욱 중요합니다
+                        {t('problem.title')}
                     </h2>
                     <p
                         className="text-[17px] leading-[1.6] text-text-secondary max-w-[36em] mb-12"
                         style={{ wordBreak: 'keep-all' }}
                     >
-                        수분 부족은 누구에게나 찾아올 수 있지만, 몇몇 상황에서는 특히 더 빠르게
-                        진행됩니다.
+                        {t('problem.description')}
                     </p>
                 </Reveal>
 
@@ -259,6 +258,7 @@ function PersonaCardLg({ persona, index, total }) {
 /* ─── 데스크탑(lg+): 버튼 제어 가로 스크롤 캐러셀 ─── */
 // Apple Health 스타일 — 작은 세로 카드들이 가로로 스냅 스크롤. 옆 카드 peek.
 function PersonaCarousel({ personas }) {
+    const { t } = useLanguage();
     const N = personas.length;
     const trackRef = useRef(null);
     const [active, setActive] = useState(0);
@@ -367,14 +367,13 @@ function PersonaCarousel({ personas }) {
                             className="text-[40px] lg:text-[52px] font-bold leading-[1.15] tracking-[-0.025em] text-text-primary"
                             style={{ wordBreak: 'keep-all' }}
                         >
-                            이런 분들께 수분 관리가 더욱 중요합니다
+                            {t('problem.title')}
                         </h2>
                         <p
                             className="mt-4 text-[17px] xl:text-[19px] leading-[1.6] text-text-secondary max-w-[40em] mx-auto"
                             style={{ wordBreak: 'keep-all' }}
                         >
-                            수분 부족은 누구에게나 찾아올 수 있지만, 몇몇 상황에서는 특히 더 빠르게
-                            진행됩니다.
+                            {t('problem.description')}
                         </p>
                     </Reveal>
                 </div>
@@ -402,8 +401,8 @@ function PersonaCarousel({ personas }) {
                 {/* ─── 컨트롤: 이전·다음 버튼 ─── */}
                 <div className="mx-auto max-w-8xl px-20">
                     <div className="mt-12 flex items-center justify-end gap-3">
-                        <ArrowBtn dir="prev" onClick={prev} disabled={atStart} label="이전" />
-                        <ArrowBtn dir="next" onClick={next} disabled={atEnd} label="다음" />
+                        <ArrowBtn dir="prev" onClick={prev} disabled={atStart} label={t('problem.controls.prev')} />
+                        <ArrowBtn dir="next" onClick={next} disabled={atEnd} label={t('problem.controls.next')} />
                     </div>
                 </div>
             </div>
@@ -413,36 +412,38 @@ function PersonaCarousel({ personas }) {
 
 /* ─── Section ─── */
 function ProblemSection() {
+    const { t } = useLanguage();
+
     const personas = [
         {
             ImageIcon: IconHardHat,
             LabelIcon: IconSun,
             image: '/images/persona-outdoor.webp',
-            imageCaption: '야외 작업자 이미지',
-            label: '야외 작업자',
-            title: '땀으로 빠진 수분, 느끼기 전에 이미 한계입니다',
-            body: '건설 현장, 배달 라이더, 농업 종사자 등 야외에서 땀을 흘리는 직업군은 수분 소실이 빠릅니다.',
-            quote: '"참을 수 있는 줄 알았는데, 탈수였습니다."',
+            imageCaption: t('problem.personas.outdoor.label'),
+            label: t('problem.personas.outdoor.label'),
+            title: t('problem.personas.outdoor.title'),
+            body: t('problem.personas.outdoor.body'),
+            quote: t('problem.personas.outdoor.quote'),
         },
         {
             ImageIcon: IconHeart,
             LabelIcon: IconUsers,
             image: '/images/persona-elderly.webp',
-            imageCaption: '어르신 케어 이미지',
-            label: '어르신 · 보호자',
-            title: '괜찮다고 하셨는데, 몸은 괜찮지 않을 수 있습니다',
-            body: '어르신은 갈증 감각이 둔화되어 있어, 수분이 부족한 상태에서도 인지하지 못하는 경우가 많습니다.',
-            quote: '"괜찮다고 하셔서 믿었는데, 나중에 후회했어요."',
+            imageCaption: t('problem.personas.elderly.label'),
+            label: t('problem.personas.elderly.label'),
+            title: t('problem.personas.elderly.title'),
+            body: t('problem.personas.elderly.body'),
+            quote: t('problem.personas.elderly.quote'),
         },
         {
             ImageIcon: IconBuilding2,
             LabelIcon: IconBuilding2,
             image: '/images/persona-office.webp',
-            imageCaption: '직장인 · 사무직 이미지',
-            label: '직장인 · 사무직',
-            title: '하루 종일 집중이 안 된다면, 탈수부터 의심하세요',
-            body: '종일 앉아서 일하며 커피·에너지 음료로 버티는 직장인은 만성적으로 수분이 부족한 상태입니다. 갈증을 느끼기 전에 이미 탈수가 진행됩니다.',
-            quote: '"피곤해서 커피를 마셨는데, 알고 보니 물이 필요했어요."',
+            imageCaption: t('problem.personas.office.label'),
+            label: t('problem.personas.office.label'),
+            title: t('problem.personas.office.title'),
+            body: t('problem.personas.office.body'),
+            quote: t('problem.personas.office.quote'),
         },
     ];
 

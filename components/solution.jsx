@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { IconWatch, IconChevronRight, IconBellRing } from './icons';
-
+import { useLanguage } from '../contexts/LanguageContext';
 
 const { useEffect, useRef, useState } = React;
 
@@ -259,6 +259,8 @@ function PulseDot() {
 
 /* ─── Highlight box ─── */
 function HighlightBox() {
+  const { t } = useLanguage();
+
   return (
     <Reveal
       delay={0}
@@ -282,19 +284,19 @@ function HighlightBox() {
             className="block text-[13px] lg:text-[14px] font-semibold uppercase tracking-[0.08em] mb-4"
             style={{ color: '#00AEEB' }}
           >
-            식약처 인증, 이제 수분도 정확하게
+            {t('solution.highlight.badge')}
           </span>
           <h3
             className="text-[32px] lg:text-[48px] font-bold leading-[1.2] tracking-[-0.025em] text-white mb-4"
             style={{ wordBreak: 'keep-all' }}
           >
-            탈수는 느끼는 게 아닙니다. 측정하는 겁니다
+            {t('solution.highlight.title')}
           </h3>
           <p
             className="text-[17px] lg:text-[19px] leading-[1.6]"
             style={{ color: 'rgba(255,255,255,0.85)', wordBreak: 'keep-all' }}
           >
-            기존 웨어러블이 활동량만 기록할 때, EASYCHECK는 수분이 부족해지기 전에 사용자에게 먼저 알림을 보냅니다.
+            {t('solution.highlight.description')}
           </p>
         </div>
 
@@ -334,23 +336,25 @@ function MobileConnector() {
 
 /* ─── Section ─── */
 function SolutionSection() {
+  const { t } = useLanguage();
+
   const steps = [
     {
       n: 1,
-      title: '워치 착용',
-      body: '스마트워치를 착용하면 자동으로 PPG 신호 측정이 시작됩니다. 바늘이나 채혈이 필요 없습니다.',
+      title: t('solution.steps.step1.title'),
+      body: t('solution.steps.step1.body'),
       visual: <StepHaloVisual Glyph={IconWatch} />,
     },
     {
       n: 2,
-      title: 'AI 실시간 분석',
-      body: '물리 기반 딥러닝 모델이 PPG 파형을 스펙트로그램으로 변환해 수분 지수를 산출합니다.',
+      title: t('solution.steps.step2.title'),
+      body: t('solution.steps.step2.body'),
       visual: <StepWaveVisual />,
     },
     {
       n: 3,
-      title: '스마트폰 알림',
-      body: '기준치 도달 시 즉시 알림 발송. 앱에서 수분 상태 추이와 수분 섭취 가이드를 확인합니다.',
+      title: t('solution.steps.step3.title'),
+      body: t('solution.steps.step3.body'),
       visual: <StepHaloVisual Glyph={IconBellRing} accentDot />,
     },
   ];
@@ -370,14 +374,14 @@ function SolutionSection() {
             className="text-[34px] md:text-[40px] lg:text-[52px] font-bold leading-[1.15] tracking-[-0.025em] text-text-primary mb-6"
             style={{ wordBreak: 'keep-all' }}
           >
-            워치 하나로,<br />수분 상태를 실시간으로 확인합니다
+            {t('solution.title')}
           </h2>
 
           <p
             className="text-[17px] lg:text-[19px] leading-[1.6] text-text-secondary max-w-[40em] mb-16 lg:mb-20"
             style={{ wordBreak: 'keep-all' }}
           >
-            EASYCHECK는 스마트워치의 PPG(광혈류측정) 신호를 AI로 분석해 체내 수분 지수를 즉각적으로 확인합니다.
+            {t('solution.description')}
           </p>
         </Reveal>
 

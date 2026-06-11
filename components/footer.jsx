@@ -1,11 +1,14 @@
 'use client';
 import { IconInfo } from './icons';
+import { useLanguage } from '../contexts/LanguageContext';
 
 // Easycheck — Footer (섹션 7) · 단일 페이지용 단순 버전
 // React. Tailwind (extended via index <script>). lucide-equivalent icons (icons.jsx). 정적, 모션 없음.
 
 /* ────────────────── 면책 박스 ────────────────── */
 function FooterDisclaimer() {
+    const { t } = useLanguage();
+
     return (
         <section
             role="region"
@@ -29,14 +32,13 @@ function FooterDisclaimer() {
                         leading-none mb-1
                     "
                 >
-                    안내사항
+                    {t('footer.disclaimer.title')}
                 </p>
                 <p
                     className="text-[14px] lg:text-[15px] font-normal text-text-secondary leading-[1.6] m-0"
                     style={{ wordBreak: 'keep-all' }}
                 >
-                    본 앱은 의료기기가 아닌 웰니스 기기입니다. EASYCHECK가 제공하는 수분 지수는
-                    참고용 정보이며, 의학적 진단·치료의 목적으로 사용되지 않습니다.
+                    {t('footer.disclaimer.text')}
                 </p>
             </div>
         </section>
@@ -45,6 +47,8 @@ function FooterDisclaimer() {
 
 /* ────────────────── 푸터 본체 ────────────────── */
 function Footer() {
+    const { t } = useLanguage();
+
     return (
         <footer className="bg-white border-t border-border" aria-labelledby="footer-heading">
             <h2 id="footer-heading" className="sr-only">
@@ -76,7 +80,7 @@ function Footer() {
                         aria-label="모회사"
                     >
                         <span className="text-[12px] lg:text-[13px] font-medium text-text-tertiary leading-none whitespace-nowrap">
-                            The M.E.N.D. BioSimulator
+                            {t('footer.company')}
                         </span>
                     </span>
                 </div>
@@ -90,14 +94,13 @@ function Footer() {
                     "
                 >
                     <p className="text-[12px] lg:text-[13px] font-normal text-text-tertiary leading-[1.6] m-0">
-                        © 2026 EASYCHECK. 더멘드바이오시뮬레이터(주). All rights reserved.
+                        {t('footer.copyright')}
                     </p>
                     <p
                         className="text-[12px] lg:text-[13px] font-normal text-text-tertiary leading-[1.6] m-0"
                         style={{ wordBreak: 'keep-all' }}
                     >
-                        사업자등록번호: 170-87-02647 · 대표: 이준상 · 주소: 서울특별시 신촌역로 29,
-                        404호 (에스큐브2호점)
+                        {t('footer.businessInfo')}
                     </p>
                 </div>
             </div>
