@@ -68,6 +68,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* English locale: swap Pretendard for Inter */
+html[lang="en"] {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html[lang="en"] body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

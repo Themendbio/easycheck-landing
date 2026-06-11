@@ -9,6 +9,7 @@ import {
     IconBuilding2,
 } from './icons';
 import { useLanguage } from '../contexts/LanguageContext';
+import { Reveal } from './ui/Reveal';
 
 // Easycheck — Section 2 "Problem / Personas"
 // React component using design-system tokens.
@@ -19,52 +20,6 @@ const { useEffect, useRef, useState } = React;
 
 /* ─── small helpers ─── */
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-
-/* ─── useInView hook (IntersectionObserver, re-triggers on every entry) ─── */
-function useInView(options = { threshold: 0.15, rootMargin: '0px 0px -80px 0px' }) {
-    const ref = useRef(null);
-    const [inView, setInView] = useState(false);
-    useEffect(() => {
-        const el = ref.current;
-        if (!el) return;
-        // Reduce motion: skip observer, show immediately.
-        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            setInView(true);
-            return;
-        }
-        const io = new IntersectionObserver(([entry]) => {
-            // Toggle on every entry/exit so the animation replays on re-scroll.
-            setInView(entry.isIntersecting);
-        }, options);
-        io.observe(el);
-        return () => io.disconnect();
-    }, []);
-    return [ref, inView];
-}
-
-/* ─── Reveal wrapper ─── */
-function Reveal({
-    as: Tag = 'div',
-    delay = 0,
-    y = 24,
-    duration = 600,
-    className = '',
-    children,
-    ...rest
-}) {
-    const [ref, inView] = useInView();
-    const style = {
-        opacity: inView ? 1 : 0,
-        transform: inView ? 'translateY(0)' : `translateY(${y}px)`,
-        transition: `opacity ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
-        willChange: 'opacity, transform',
-    };
-    return (
-        <Tag ref={ref} className={className} style={style} {...rest}>
-            {children}
-        </Tag>
-    );
-}
 
 /* ─── Persona card — 모바일 가로 스와이프 트랙용 카드 ─── */
 function PersonaCard({ persona }) {
@@ -141,7 +96,7 @@ function PersonaSwipe({ personas }) {
             data-screen-label="Problem"
         >
             <div className="mx-auto max-w-8xl px-6 py-20">
-                <Reveal y={16} className="js-hdr vary-left flex flex-col items-center text-center">
+                <Reveal y={16} className="js-hdr vary-left flex flex-col items-start text-left">
                     <h2
                         id="problem-headline-m"
                         className="text-[34px] md:text-[40px] lg:text-[52px] font-bold leading-[1.15] tracking-[-0.025em] text-text-primary mb-6"
@@ -361,7 +316,7 @@ function PersonaCarousel({ personas }) {
             <div className="py-24 xl:py-28">
                 {/* ─── 헤더 ─── */}
                 <div className="mx-auto max-w-8xl px-20">
-                    <Reveal className="js-hdr vary-left text-center mb-14 xl:mb-16">
+                    <Reveal className="js-hdr vary-left text-left mb-14 xl:mb-16">
                         <h2
                             id="problem-headline"
                             className="text-[40px] lg:text-[52px] font-bold leading-[1.15] tracking-[-0.025em] text-text-primary"
@@ -370,7 +325,7 @@ function PersonaCarousel({ personas }) {
                             {t('problem.title')}
                         </h2>
                         <p
-                            className="mt-4 text-[17px] xl:text-[19px] leading-[1.6] text-text-secondary max-w-[40em] mx-auto"
+                            className="mt-4 text-[17px] xl:text-[19px] leading-[1.6] text-text-secondary max-w-[40em]"
                             style={{ wordBreak: 'keep-all' }}
                         >
                             {t('problem.description')}
