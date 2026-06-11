@@ -96,7 +96,8 @@ function Footer() {
                         className="text-[12px] lg:text-[13px] font-normal text-text-tertiary leading-[1.6] m-0"
                         style={{ wordBreak: 'keep-all' }}
                     >
-                        사업자등록번호: 000-00-00000 · 대표: [대표자명] · 주소: [회사 주소]
+                        사업자등록번호: 170-87-02647 · 대표: 이준상 · 주소: 서울특별시 신촌역로 29,
+                        404호 (에스큐브2호점)
                     </p>
                 </div>
             </div>
