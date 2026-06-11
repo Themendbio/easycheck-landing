@@ -14,6 +14,11 @@ export function LanguageProvider({ children, translations }) {
         }
     }, []);
 
+    // Keep <html lang> in sync so locale-specific fonts/styles apply
+    useEffect(() => {
+        document.documentElement.lang = locale;
+    }, [locale]);
+
     // Save language preference to localStorage when it changes
     const changeLocale = (newLocale) => {
         setLocale(newLocale);

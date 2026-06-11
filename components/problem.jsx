@@ -96,7 +96,7 @@ function PersonaSwipe({ personas }) {
             data-screen-label="Problem"
         >
             <div className="mx-auto max-w-8xl px-6 py-20">
-                <Reveal y={16} className="js-hdr vary-left flex flex-col items-center text-center">
+                <Reveal y={16} className="js-hdr vary-left flex flex-col items-start text-left">
                     <h2
                         id="problem-headline-m"
                         className="text-[34px] md:text-[40px] lg:text-[52px] font-bold leading-[1.15] tracking-[-0.025em] text-text-primary mb-6"
@@ -316,7 +316,7 @@ function PersonaCarousel({ personas }) {
             <div className="py-24 xl:py-28">
                 {/* ─── 헤더 ─── */}
                 <div className="mx-auto max-w-8xl px-20">
-                    <Reveal className="js-hdr vary-left text-center mb-14 xl:mb-16">
+                    <Reveal className="js-hdr vary-left text-left mb-14 xl:mb-16">
                         <h2
                             id="problem-headline"
                             className="text-[40px] lg:text-[52px] font-bold leading-[1.15] tracking-[-0.025em] text-text-primary"
@@ -325,7 +325,7 @@ function PersonaCarousel({ personas }) {
                             {t('problem.title')}
                         </h2>
                         <p
-                            className="mt-4 text-[17px] xl:text-[19px] leading-[1.6] text-text-secondary max-w-[40em] mx-auto"
+                            className="mt-4 text-[17px] xl:text-[19px] leading-[1.6] text-text-secondary max-w-[40em]"
                             style={{ wordBreak: 'keep-all' }}
                         >
                             {t('problem.description')}

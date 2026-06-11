@@ -188,7 +188,7 @@ function TechSection() {
       
       <div className="mx-auto max-w-8xl px-6 lg:px-20 py-20 lg:py-[120px]">
         {/* Header */}
-        <Reveal y={16} className="js-hdr vary-left flex flex-col items-center text-center">
+        <Reveal y={16} className="js-hdr vary-left flex flex-col items-start text-left">
           <h2
             id="tech-headline"
             className="text-[34px] md:text-[40px] lg:text-[52px] font-bold leading-[1.15] tracking-[-0.025em] text-text-primary mb-6"

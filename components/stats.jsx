@@ -18,14 +18,14 @@ function StatsSection() {
         >
             <div className="mx-auto max-w-7xl">
                 {/* 섹션 헤더 */}
-                <div className="text-center mb-8 md:mb-10">
+                <div className="text-left mb-8 md:mb-10">
                     {/* 제목 */}
                     <Reveal as="h2" delay={0} className="text-[34px] md:text-[40px] lg:text-[52px] font-bold leading-tight text-text-primary mb-4" style={{ letterSpacing: '-0.02em' }}>
                         {t('stats.title')}
                     </Reveal>
 
                     {/* 설명 */}
-                    <Reveal as="p" delay={100} className="text-[15px] lg:text-[17px] leading-[1.6] text-text-secondary max-w-2xl mx-auto">
+                    <Reveal as="p" delay={100} className="text-[15px] lg:text-[17px] leading-[1.6] text-text-secondary max-w-2xl">
                         {t('stats.description')}
                     </Reveal>
                 </div>
