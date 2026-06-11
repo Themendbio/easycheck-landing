@@ -7,7 +7,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 const { useEffect, useRef, useState } = React;
 
 // ─── useInView hook (IntersectionObserver, re-triggers on every entry) ───
-function useInView(options = { threshold: 0.2, rootMargin: '0px 0px -100px 0px' }) {
+function useInView(options = { threshold: 0.2, rootMargin: '0px 0px -100px 0px' }, deps = []) {
     const ref = useRef(null);
     const [inView, setInView] = useState(false);
     useEffect(() => {
@@ -24,7 +24,7 @@ function useInView(options = { threshold: 0.2, rootMargin: '0px 0px -100px 0px' 
         }, options);
         io.observe(el);
         return () => io.disconnect();
-    }, []);
+    }, deps);
     return [ref, inView];
 }
 
@@ -46,7 +46,7 @@ function Reveal({ as: Tag = 'div', delay = 0, y = 24, duration = 600, className 
 
 function StatsSection() {
     const { t, locale } = useLanguage();
-    const [chartRef, chartInView] = useInView();
+    const [chartRef, chartInView] = useInView({ threshold: 0.2, rootMargin: '0px 0px -100px 0px' }, [locale]);
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
