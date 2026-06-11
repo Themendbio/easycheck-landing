@@ -4,7 +4,6 @@ import { IconMenu, IconPlay, IconCheck } from './icons';
 
 // Easycheck — Nav + Hero section
 // React component using design-system tokens (Tailwind extended in index <script>).
-// NOTE: 이 Hero는 이전 cta.jsx 의 CtaSection 을 이전한 것으로, 실제로 사용되는 Hero 입니다.
 
 const { useState } = React;
 
@@ -79,12 +78,7 @@ function Hero() {
                     preload="auto"
                     aria-hidden="true"
                 >
-                    <source
-                        src={
-                            "/video/hero-video.mp4"
-                        }
-                        type="video/mp4"
-                    />
+                    <source src={'/video/hero-video.mp4'} type="video/mp4" />
                 </video>
                 {/* ─── 반투명 검정 오버레이 ─── */}
                 <div className="hero-video-overlay" aria-hidden="true" />
@@ -195,6 +189,5 @@ function Hero() {
         </>
     );
 }
-
 
 export { Nav, Hero };

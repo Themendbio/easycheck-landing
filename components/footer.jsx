@@ -1,5 +1,4 @@
 'use client';
-import React from 'react';
 import { IconInfo } from './icons';
 
 // Easycheck — Footer (섹션 7) · 단일 페이지용 단순 버전
@@ -104,6 +103,5 @@ function Footer() {
         </footer>
     );
 }
-
 
 export { Footer };
