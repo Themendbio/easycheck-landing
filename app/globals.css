@@ -75,6 +75,31 @@ html[lang="en"] {
 
 html[lang="en"] body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: normal;
+}
+
+/* English: relax the Korean-tuned negative tracking on headings */
+html[lang="en"] h1,
+html[lang="en"] h2,
+html[lang="en"] h3 {
+  letter-spacing: -0.01em;
+}
+
+/* English: Inter's bold reads heavier than Pretendard's — drop display
+   headings to semibold for a more refined Latin look */
+html[lang="en"] h1,
+html[lang="en"] h2 {
+  font-weight: 600;
+}
+
+/* English: tighten the Korean-tuned body line-height (loose for Latin text) */
+html[lang="en"] .leading-\[1\.6\],
+html[lang="en"] .leading-\[1\.65\] {
+  line-height: 1.5;
+}
+
+html[lang="en"] .leading-\[1\.7\] {
+  line-height: 1.55;
 }
 
 .sr-only {

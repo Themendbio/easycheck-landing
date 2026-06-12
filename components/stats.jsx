@@ -20,7 +20,7 @@ function StatsSection() {
                 {/* 섹션 헤더 */}
                 <div className="text-left mb-8 md:mb-10">
                     {/* 제목 */}
-                    <Reveal as="h2" delay={0} className="text-[34px] md:text-[40px] lg:text-[52px] font-bold leading-tight text-text-primary mb-4" style={{ letterSpacing: '-0.02em' }}>
+                    <Reveal as="h2" delay={0} className="text-[34px] md:text-[40px] lg:text-[52px] font-bold leading-tight text-text-primary mb-4" style={{ letterSpacing: locale === 'en' ? '-0.01em' : '-0.02em' }}>
                         {t('stats.title')}
                     </Reveal>
 
@@ -50,7 +50,7 @@ function StatsSection() {
                                     />
                                 </svg>
                             </div>
-                            <h3 className="text-[24px] lg:text-[32px] font-bold text-text-primary mb-4" style={{ letterSpacing: '-0.02em' }}>
+                            <h3 className="text-[24px] lg:text-[32px] font-bold text-text-primary mb-4" style={{ letterSpacing: '-0.01em' }}>
                                 Global Climate Data
                             </h3>
                             <p className="text-[15px] lg:text-[17px] text-text-secondary leading-[1.6]" style={{ wordBreak: 'keep-all' }}>
