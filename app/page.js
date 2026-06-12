@@ -5,6 +5,7 @@ import { StatsSection } from '../components/stats';
 import { ProblemSection } from '../components/problem';
 import { SolutionSection } from '../components/solution';
 import { TechSection } from '../components/tech';
+import { DownloadCTA } from '../components/download';
 import { Footer } from '../components/footer';
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <ProblemSection />
       <SolutionSection />
       <TechSection />
+      <DownloadCTA />
       <Footer />
     </div>
   );

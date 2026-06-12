@@ -131,6 +131,10 @@
             }
         }
     },
+    "download": {
+        "title": "It’s what’s inside that counts. Now you can count it.",
+        "description": "All you need is a smartwatch. EASYCHECK alerts you before thirst ever kicks in."
+    },
     "footer": {
         "disclaimer": {
             "title": "Disclaimer",
