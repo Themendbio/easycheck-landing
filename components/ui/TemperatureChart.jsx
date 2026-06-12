@@ -18,7 +18,10 @@ const data = [
 
 // 연도별 여름 평균기온 라인 차트. 모바일/데스크톱 반응형 + 스크롤 진입 애니메이션.
 export function TemperatureChart({ t, locale }) {
-    const [chartRef, chartInView] = useInView({ threshold: 0.2, rootMargin: '0px 0px -100px 0px' }, [locale]);
+    const [chartRef, chartInView] = useInView(
+        { threshold: 0.2, rootMargin: '0px 0px -100px 0px' },
+        [locale],
+    );
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -48,13 +51,13 @@ export function TemperatureChart({ t, locale }) {
     const pts = data.map((d, i) => ({ ...d, cx: x(i), cy: y(d.temp) }));
     const last = pts[pts.length - 1];
 
+    const baseline = H - P.b;
+    const spacing = plotW / (data.length - 1);
+    const barW = spacing * 0.34;
+
     const linePath = pts
         .map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.cx.toFixed(2)} ${p.cy.toFixed(2)}`)
         .join(' ');
-    const areaPath =
-        linePath +
-        ` L ${last.cx.toFixed(2)} ${(H - P.b).toFixed(2)}` +
-        ` L ${pts[0].cx.toFixed(2)} ${(H - P.b).toFixed(2)} Z`;
 
     return (
         <>
@@ -67,30 +70,26 @@ export function TemperatureChart({ t, locale }) {
                 className={`w-full h-auto ${chartInView ? 'chart-visible' : ''}`}
             >
                 <defs>
-                    <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#0068B7" stopOpacity="0.15" />
-                        <stop offset="100%" stopColor="#0068B7" stopOpacity="0" />
+                    <linearGradient id="blBar" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#0068B7" stopOpacity="0.55" />
+                        <stop offset="100%" stopColor="#0068B7" stopOpacity="0.06" />
                     </linearGradient>
+                    <linearGradient id="blPeak" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#F39800" />
+                        <stop offset="100%" stopColor="#F39800" stopOpacity="0.18" />
+                    </linearGradient>
+                    <filter id="blGlow" x="-60%" y="-60%" width="220%" height="220%">
+                        <feGaussianBlur stdDeviation="5" result="b" />
+                        <feMerge>
+                            <feMergeNode in="b" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
                 </defs>
-
-                {/* ─── 수직 점선 (데스크톱만) ─── */}
-                {!isMobile && (
-                    <line
-                        x1={last.cx}
-                        x2={last.cx}
-                        y1={last.cy}
-                        y2={H - P.b}
-                        stroke="#F39800"
-                        strokeWidth="1.5"
-                        strokeDasharray="4 4"
-                        className="chart-axis-label"
-                        style={{ animationDelay: '0.9s' }}
-                    />
-                )}
 
                 {/* ─── 우측 텍스트 박스 (데스크톱만) ─── */}
                 {!isMobile && (
-                    <foreignObject x={W - P.r + 40} y={P.t} width={P.r - 60} height={plotH}>
+                    <foreignObject x={W - P.r + 44} y={P.t} width={P.r - 60} height={plotH}>
                         <div
                             xmlns="http://www.w3.org/1999/xhtml"
                             style={{
@@ -106,7 +105,7 @@ export function TemperatureChart({ t, locale }) {
                             <div
                                 className="chart-axis-label"
                                 style={{
-                                    fontSize: 64,
+                                    fontSize: 72,
                                     fontWeight: 800,
                                     lineHeight: 1,
                                     color: '#F39800',
@@ -193,7 +192,7 @@ export function TemperatureChart({ t, locale }) {
                             y={y(tick)}
                             textAnchor="end"
                             dominantBaseline="central"
-                            fontSize={isMobile ? "12" : "16"}
+                            fontSize={isMobile ? '12' : '16'}
                             fill="#9CA3AF"
                             fontFamily="Pretendard Variable, Pretendard, sans-serif"
                             style={{ letterSpacing: '-0.01em' }}
@@ -203,19 +202,39 @@ export function TemperatureChart({ t, locale }) {
                     </g>
                 ))}
 
-                {/* ─── 면적 채움 ─── */}
-                <path d={areaPath} fill="url(#areaGrad)" className="chart-area" />
+                {/* ─── 막대 ─── */}
+                {pts.map((p, i) => {
+                    const isLast = i === pts.length - 1;
+                    return (
+                        <rect
+                            key={p.year}
+                            x={p.cx - barW / 2}
+                            y={p.cy}
+                            width={barW}
+                            height={baseline - p.cy}
+                            rx={isMobile ? 5 : 7}
+                            fill={isLast ? 'url(#blPeak)' : 'url(#blBar)'}
+                            filter={isLast ? 'url(#blGlow)' : undefined}
+                            className="chart-bar"
+                            style={{
+                                transformOrigin: `${p.cx}px ${baseline}px`,
+                                animationDelay: `${0.1 + i * 0.06}s`,
+                            }}
+                        />
+                    );
+                })}
 
                 {/* ─── 라인 ─── */}
                 <path
                     d={linePath}
                     fill="none"
-                    stroke="#0068B7"
-                    strokeWidth={isMobile ? "2.5" : "3"}
+                    stroke="#003685"
+                    strokeWidth={isMobile ? '2.5' : '3'}
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     pathLength="1"
                     className="chart-line"
+                    style={{ animationDelay: '0.65s' }}
                 />
 
                 {/* ─── X축 라벨 ─── */}
@@ -225,8 +244,8 @@ export function TemperatureChart({ t, locale }) {
                         x={p.cx}
                         y={H - P.b + (isMobile ? 22 : 28)}
                         textAnchor="middle"
-                        fontSize={isMobile ? "12" : "16"}
-                        fill={i === pts.length - 1 ? '#1F2937' : '#9CA3AF'}
+                        fontSize={isMobile ? '12' : '16'}
+                        fill={i === pts.length - 1 ? '#F39800' : '#9CA3AF'}
                         fontWeight={i === pts.length - 1 ? 700 : 400}
                         fontFamily="Pretendard Variable, Pretendard, sans-serif"
                         className="chart-axis-label"
@@ -245,12 +264,12 @@ export function TemperatureChart({ t, locale }) {
                         key={p.year}
                         cx={p.cx}
                         cy={p.cy}
-                        r={isMobile ? "4" : "5"}
+                        r={isMobile ? '4' : '5'}
                         fill="#FFFFFF"
-                        stroke="#0068B7"
-                        strokeWidth={isMobile ? "2" : "2.5"}
+                        stroke="#003685"
+                        strokeWidth={isMobile ? '2' : '2.5'}
                         className="chart-dot"
-                        style={{ animationDelay: `${0.2 + i * 0.08}s` }}
+                        style={{ animationDelay: `${0.85 + i * 0.05}s` }}
                     />
                 ))}
 
@@ -260,12 +279,12 @@ export function TemperatureChart({ t, locale }) {
                     <circle
                         cx={last.cx}
                         cy={last.cy}
-                        r={isMobile ? "6" : "8"}
+                        r={isMobile ? '6' : '8'}
                         fill="#F39800"
                         stroke="#FFFFFF"
-                        strokeWidth={isMobile ? "2" : "2.5"}
-                        className="chart-axis-label"
-                        style={{ animationDelay: '0.85s' }}
+                        strokeWidth={isMobile ? '2' : '2.5'}
+                        className="chart-dot"
+                        style={{ animationDelay: '1.25s' }}
                     />
                 </g>
             </svg>
@@ -274,17 +293,26 @@ export function TemperatureChart({ t, locale }) {
             {isMobile && (
                 <Reveal delay={200} className="mt-12 text-center px-4">
                     {/* 큰 온도 숫자 */}
-                    <div className="text-[56px] font-bold text-brand-accent mb-4" style={{ letterSpacing: '-0.03em' }}>
+                    <div
+                        className="text-[56px] font-bold text-brand-accent mb-4"
+                        style={{ letterSpacing: '-0.03em' }}
+                    >
                         {t('stats.chart.temp')}
                     </div>
 
                     {/* 메인 헤드라인 */}
-                    <h3 className="text-[24px] md:text-[28px] font-bold text-text-primary mb-3" style={{ letterSpacing: '-0.02em' }}>
+                    <h3
+                        className="text-[24px] md:text-[28px] font-bold text-text-primary mb-3"
+                        style={{ letterSpacing: '-0.02em' }}
+                    >
                         {t('stats.chart.headline')}
                     </h3>
 
                     {/* 온도 정보 */}
-                    <p className="text-[15px] text-text-secondary mb-4" style={{ letterSpacing: '-0.01em' }}>
+                    <p
+                        className="text-[15px] text-text-secondary mb-4"
+                        style={{ letterSpacing: '-0.01em' }}
+                    >
                         {t('stats.chart.comparison')}{' '}
                         <strong className="text-brand-accent font-bold">
                             {t('stats.chart.comparisonValue')}
